@@ -12,16 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          command: android debug
-          buildozer_version: stable
+      - name: Build with Buildozer (official Docker image)
+        run: |
+          docker run --rm \
+            -v "$PWD":/home/user/hostcwd \
+            -v buildozer_cache:/home/user/.buildozer \
+            kivy/buildozer:latest android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: python-webview-apk
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: bin/*.apk
           if-no-files-found: error
