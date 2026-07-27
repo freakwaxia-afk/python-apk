@@ -1,0 +1,3 @@
+# 本地桌面预览依赖（仅桌面开发用，打包进 APK 的是 buildozer.spec 里的 requirements）
+flask>=3.0
+kivy>=2.2
