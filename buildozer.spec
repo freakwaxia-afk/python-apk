@@ -31,9 +31,12 @@ android.api = 33
 android.minapi = 21
 android.ndk = 25b
 
+# Auto-accept Android SDK licenses (needed for non-interactive builds)
+# NOTE: this must live in the [app] section, not [buildozer], or it is ignored.
+android.accept_sdk_license = True
+# Pin build-tools to match api=33 (avoids pulling bleeding-edge 37)
+android.build_tools_version = 33.0.0
+
 [buildozer]
 log_level = 2
 warn_on_root = 0
-
-# Auto-accept Android SDK licenses (needed for non-interactive builds)
-android.accept_sdk_license = True
