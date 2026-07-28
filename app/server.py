@@ -21,6 +21,10 @@ def start(port=8080, host="127.0.0.1", www_dir=None):
     www = www_dir or WWW_DIR
     app = Flask(__name__, static_folder=None)
 
+    # 先加载后端路由，确保 /api/* 等接口优先于下面的静态文件兜底路由匹配，
+    # 否则旧版 Flask/Werkzeug 下兜底路由会“吞掉” /api/* 并返回 index.html（即按钮报 syntax error）。
+    _load_backend(app)
+
     @app.route("/")
     @app.route("/<path:path>")
     def serve(path="index.html"):
@@ -29,8 +33,6 @@ def start(port=8080, host="127.0.0.1", www_dir=None):
             return send_from_directory(www, path)
         # 未匹配到静态文件（如 SPA 路由）时回退到 index.html
         return send_from_directory(www, "index.html")
-
-    _load_backend(app)
 
     t = threading.Thread(
         target=lambda: app.run(

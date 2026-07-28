@@ -14,7 +14,7 @@ source.include_exts = py,png,jpg,jpeg,kv,atlas,html,js,css,json,svg,woff,woff2,t
 version = 1.0.0
 
 # 依赖：python3 + kivy(界面载体) + flask(本地HTTP服务) + pyjnius(调用原生WebView)
-requirements = python3,kivy,flask,pyjnius
+requirements = python3,kivy,flask>=3.0,pyjnius
 
 # 屏幕方向 / 全屏
 orientation = portrait
