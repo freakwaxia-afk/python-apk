@@ -1,8 +1,8 @@
 [app]
 
 # 应用基本信息
-title = PythonWebViewApp
-package.name = pythonwebviewapp
+title = 2048
+package.name = game2048
 package.domain = org.example
 
 # 源码目录（main.py 必须在该目录根下）
