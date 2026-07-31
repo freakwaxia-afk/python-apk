@@ -13,8 +13,10 @@ source.include_exts = py,png,jpg,jpeg,kv,atlas,html,js,css,json,svg,woff,woff2,t
 # 版本
 version = 1.0.0
 
-# 依赖：python3 + kivy(界面载体) + flask(本地HTTP服务) + pyjnius(调用原生WebView)
-requirements = python3,kivy,flask>=3.0,pyjnius
+# 依赖：python3(钉到3.11，避免镜像默认3.14与kivy2.3.1编译不兼容) + kivy + flask + pyjnius
+# 注意：kivy/buildozer:latest 的默认 python3 已升到 3.14，kivy 2.3.1 在 3.14 上无法编译
+# （config.pxi 解析失败），故必须显式钉 python3==3.11.9。
+requirements = python3==3.11.9,kivy==2.3.1,flask>=3.0,pyjnius
 
 # 屏幕方向 / 全屏
 orientation = portrait
